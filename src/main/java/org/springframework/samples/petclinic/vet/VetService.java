@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.vet;
 
 import org.springframework.stereotype.Service;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -8,8 +10,11 @@ public class VetService {
 
 	private final VetRepository vetRepository;
 
-	public VetService(VetRepository vetRepository) {
+	private final SpecialtyRepository specialtyRepository;
+
+	public VetService(VetRepository vetRepository, SpecialtyRepository specialtyRepository) {
 		this.vetRepository = vetRepository;
+		this.specialtyRepository = specialtyRepository;
 	}
 
 	public List<Vet> getVets() {
@@ -28,8 +33,15 @@ public class VetService {
 		vetRepository.deleteById(id);
 	}
 
-	public void addSpecialty(Specialty specialty, Vet vet) {
+	public Vet addSpecialty(int vetId, int specialtyId) {
+		Vet vet = vetRepository.findById(vetId);
+		Specialty specialty = specialtyRepository.findById(specialtyId);
 		vet.getSpecialties().add(specialty);
+		return vet;
+	}
+
+	public Specialty createSpecialty(@Valid Specialty specialty) {
+		return specialtyRepository.save(specialty);
 	}
 
 }

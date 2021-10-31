@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.owner;
 
 import org.springframework.samples.petclinic.pet.Pet;
+import org.springframework.samples.petclinic.pet.PetService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -8,9 +9,11 @@ import java.util.List;
 public class OwnerService {
 
 	private final OwnerRepository ownerRepository;
+	private final PetService petService;
 
-	public OwnerService(OwnerRepository ownerRepository) {
+	public OwnerService(OwnerRepository ownerRepository, PetService petService) {
 		this.ownerRepository = ownerRepository;
+		this.petService = petService;
 	}
 
 	public List<Owner> getOwners() {
@@ -29,8 +32,11 @@ public class OwnerService {
 		ownerRepository.deleteById(id);
 	}
 
-	public void addPet(Owner owner, Pet pet) {
-		owner.getPets().add(pet);
+	public Owner addPet(int id, Pet pet) {
+		Pet newPet = petService.createPet(pet);
+		Owner owner = ownerRepository.findById(id);
+		owner.getPets().add(newPet);
+		return owner;
 	}
 
 }

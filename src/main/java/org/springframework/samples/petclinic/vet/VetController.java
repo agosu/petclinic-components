@@ -36,4 +36,14 @@ class VetController {
 		vetService.deleteVetById(id);
 	}
 
+	@PutMapping("/{vetId}/specialties/{specialtyId}")
+	public Vet addSpecialtyToVet(@PathVariable int vetId, @PathVariable int specialtyId) {
+		return vetService.addSpecialty(vetId, specialtyId);
+	}
+
+	@PostMapping("/specialties")
+	public Specialty createSpecialty(@Valid Specialty specialty){
+		return vetService.createSpecialty(specialty);
+	}
+
 }

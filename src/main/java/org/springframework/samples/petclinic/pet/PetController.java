@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.pet;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.samples.petclinic.visit.Visit;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -39,6 +39,11 @@ class PetController {
 	@DeleteMapping("/{id}")
 	public void deletePet(@PathVariable int id) {
 		petService.deletePetById(id);
+	}
+
+	@PostMapping("/{id}/visits")
+	public Pet addVisitToPet(@PathVariable int id, @Valid Visit visit) {
+		return petService.addVisit(id, visit);
 	}
 
 }

@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.pet;
 
 import org.springframework.samples.petclinic.visit.Visit;
+import org.springframework.samples.petclinic.visit.VisitService;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -8,9 +9,11 @@ import java.util.List;
 public class PetService {
 
 	private final PetRepository petRepository;
+	private final VisitService visitService;
 
-	public PetService(PetRepository petRepository) {
+	public PetService(PetRepository petRepository, VisitService visitService) {
 		this.petRepository = petRepository;
+		this.visitService = visitService;
 	}
 
 	public List<PetType> getPetTypes() {
@@ -33,8 +36,11 @@ public class PetService {
 		petRepository.deleteById(id);
 	}
 
-	public void addVisit(Visit visit, Pet pet) {
-		pet.getVisits().add(visit);
+	public Pet addVisit(int id, Visit visit) {
+		Pet pet = petRepository.findById(id);
+		Visit newVisit = visitService.createVisit(visit);
+		pet.getVisits().add(newVisit);
+		return pet;
 	}
 
 }
