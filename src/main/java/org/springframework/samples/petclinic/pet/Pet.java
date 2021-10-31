@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.owner;
+package org.springframework.samples.petclinic.pet;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,7 +34,8 @@ import javax.persistence.Transient;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.samples.petclinic.model.NamedEntity;
+import org.springframework.samples.petclinic.common.NamedEntity;
+import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.visit.Visit;
 
 /**
@@ -94,7 +95,7 @@ public class Pet extends NamedEntity {
 		return this.visits;
 	}
 
-	protected void setVisitsInternal(Collection<Visit> visits) {
+	public void setVisitsInternal(Collection<Visit> visits) {
 		this.visits = new LinkedHashSet<>(visits);
 	}
 

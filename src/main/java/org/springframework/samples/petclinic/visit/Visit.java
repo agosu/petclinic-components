@@ -16,7 +16,7 @@
 package org.springframework.samples.petclinic.visit;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.samples.petclinic.model.BaseEntity;
+import org.springframework.samples.petclinic.common.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
