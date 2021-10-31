@@ -96,6 +96,10 @@ public class OwnerService {
 		return mav;
 	}
 
+	public void addPet(Owner owner, Pet pet) {
+		owner.getPets().add(pet);
+	}
+
 	private String addPaginationModel(int page, Model model, String lastName, Page<Owner> paginated) {
 		model.addAttribute("listOwners", paginated);
 		List<Owner> listOwners = paginated.getContent();
