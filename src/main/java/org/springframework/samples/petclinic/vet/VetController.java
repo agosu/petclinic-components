@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController("/vets")
+@RestController
+@RequestMapping("/vets")
 class VetController {
 
 	private final VetService vetService;
@@ -28,11 +29,6 @@ class VetController {
 	@PostMapping
 	public Vet createOwner(@Valid Vet vet) {
 		return vetService.createVet(vet);
-	}
-
-	@PutMapping
-	public Vet updateOwner(@Valid Vet vet) {
-		return vetService.updateVet(vet);
 	}
 
 	@DeleteMapping("/{id}")

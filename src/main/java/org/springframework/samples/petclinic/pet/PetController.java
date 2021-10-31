@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController("/pets")
+@RestController
+@RequestMapping("/pets")
 class PetController {
 
 	private final PetService petService;
@@ -33,11 +34,6 @@ class PetController {
 	@PostMapping
 	public Pet createPet(@Valid Pet pet) {
 		return petService.createPet(pet);
-	}
-
-	@PutMapping
-	public Pet updatePet(@Valid Pet pet) {
-		return petService.updatePet(pet);
 	}
 
 	@DeleteMapping("/{id}")

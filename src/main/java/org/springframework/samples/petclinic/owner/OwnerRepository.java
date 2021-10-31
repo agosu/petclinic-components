@@ -19,7 +19,5 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 
 	Owner save(Owner owner);
 
-	Owner update(Owner owner);
-
 	void deleteById(int id);
 }

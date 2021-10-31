@@ -4,7 +4,8 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/owners")
+@RestController
+@RequestMapping("/owners")
 class OwnerController {
 
 	private final OwnerService ownerService;
@@ -26,11 +27,6 @@ class OwnerController {
 	@PostMapping
 	public Owner createOwner(@Valid Owner owner) {
 		return ownerService.createOwner(owner);
-	}
-
-	@PutMapping
-	public Owner updateOwner(@Valid Owner owner) {
-		return ownerService.updateOwner(owner);
 	}
 
 	@DeleteMapping("/{id}")

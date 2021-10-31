@@ -15,8 +15,6 @@ public interface VetRepository extends Repository<Vet, Integer> {
 
 	Vet save(Vet vet);
 
-	Vet update(Vet vet);
-
 	void deleteById(int id);
 
 }
