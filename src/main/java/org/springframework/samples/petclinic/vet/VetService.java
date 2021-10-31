@@ -17,30 +17,30 @@ public class VetService {
 		this.specialtyRepository = specialtyRepository;
 	}
 
-	public List<Vet> getVets() {
+	List<Vet> getVets() {
 		return vetRepository.findAll();
 	}
 
-	public Vet findVetById(int vetId) {
+	Vet findVetById(int vetId) {
 		return vetRepository.findById(vetId);
 	}
 
-	public Vet createVet(Vet vet) {
+	Vet createVet(Vet vet) {
 		return vetRepository.save(vet);
 	}
 
-	public void deleteVetById(int id) {
+	void deleteVetById(int id) {
 		vetRepository.deleteById(id);
 	}
 
-	public Vet addSpecialty(int vetId, int specialtyId) {
+	Vet addSpecialty(int vetId, int specialtyId) {
 		Vet vet = vetRepository.findById(vetId);
 		Specialty specialty = specialtyRepository.findById(specialtyId);
 		vet.getSpecialties().add(specialty);
 		return vet;
 	}
 
-	public Specialty createSpecialty(@Valid Specialty specialty) {
+	Specialty createSpecialty(@Valid Specialty specialty) {
 		return specialtyRepository.save(specialty);
 	}
 

@@ -16,23 +16,23 @@ public class OwnerService {
 		this.petService = petService;
 	}
 
-	public List<Owner> getOwners() {
+	List<Owner> getOwners() {
 		return ownerRepository.findAll();
 	}
 
-	public Owner findOwnerById(int ownerId) {
+	Owner findOwnerById(int ownerId) {
 		return ownerRepository.findById(ownerId);
 	}
 
-	public Owner createOwner(Owner owner) {
+	Owner createOwner(Owner owner) {
 		return ownerRepository.save(owner);
 	}
 
-	public void deleteOwnerById(int id) {
+	void deleteOwnerById(int id) {
 		ownerRepository.deleteById(id);
 	}
 
-	public Owner addPet(int id, Pet pet) {
+	Owner addPet(int id, Pet pet) {
 		Pet newPet = petService.createPet(pet);
 		Owner owner = ownerRepository.findById(id);
 		owner.getPets().add(newPet);
