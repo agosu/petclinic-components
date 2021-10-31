@@ -16,15 +16,8 @@
 package org.springframework.samples.petclinic.pet;
 
 import org.springframework.samples.petclinic.owner.Owner;
-import org.springframework.samples.petclinic.owner.OwnerRepository;
-import org.springframework.samples.petclinic.owner.OwnerService;
-import org.springframework.samples.petclinic.pet.Pet;
-import org.springframework.samples.petclinic.pet.PetRepository;
-import org.springframework.samples.petclinic.pet.PetType;
-import org.springframework.samples.petclinic.pet.PetValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -42,11 +35,9 @@ import java.util.Collection;
 class PetController {
 
 	private final PetService petService;
-	private final OwnerService ownerService;
 
-	public PetController(PetService petService, OwnerService ownerService) {
+	public PetController(PetService petService) {
 		this.petService = petService;
-		this.ownerService = ownerService;
 	}
 
 	@ModelAttribute("types")
@@ -55,8 +46,8 @@ class PetController {
 	}
 
 	@ModelAttribute("owner")
-	public Owner findOwner(@PathVariable("ownerId") int ownerId) {
-		return ownerService.findById(ownerId);
+	public Owner findOwner(@PathVariable("petId") int petId) {
+		return petService.getOwner(petId);
 	}
 
 	@InitBinder("owner")

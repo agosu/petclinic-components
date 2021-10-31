@@ -34,6 +34,10 @@ public class VetService {
 		return vets;
 	}
 
+	public void addSpecialty(Specialty specialty, Vet vet) {
+		vet.getSpecialties().add(specialty);
+	}
+
 	private String addPaginationModel(int page, Page<Vet> paginated, Model model) {
 		List<Vet> listVets = paginated.getContent();
 		model.addAttribute("currentPage", page);
